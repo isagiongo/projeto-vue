@@ -1,7 +1,11 @@
 <template>
   <div>
     <h1>{{ titulo }}</h1>
-    <img :src="foto.url" :alt="foto.descricao">
+    <ul>
+      <li v-for="foto of fotos">
+        <img :src="foto.url" :alt="foto.descricao">
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -10,11 +14,13 @@ export default {
   data () {
     return {
       titulo: 'Alurapic',
-      foto: {
-        descricao: 'gato preto',
-        url: 'https://www.infoescola.com/wp-content/uploads/2010/12/Gato-Bombaim_774381946.jpg'
-      }
+      fotos: []
     }
+  },
+  created () {
+    this.$http.get('http://localhost:3000/v1/fotos')
+      .then(res => res.json())
+      .then(fotos => this.fotos = fotos, erro => console.log(erro));
   }
 }
 </script>
