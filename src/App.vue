@@ -1,8 +1,8 @@
 <template>
-  <div>
-    <h1>{{ titulo }}</h1>
-    <ul>
-      <li v-for="foto of fotos">
+  <div class="corpo">
+    <h1 class="titulo">{{ titulo }}</h1>
+    <ul class="lista-fotos">
+      <li class="lista-fotos-itens" v-for="foto of fotos">
         <img :src="foto.url" :alt="foto.descricao">
       </li>
     </ul>
@@ -26,4 +26,21 @@ export default {
 </script>
 
 <style>
+  .corpo {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 96%;
+    margin: 0 auto;
+  }
+
+  .titulo {
+    text-align: center;
+  }
+
+  .lista-fotos {
+    list-style: none;
+  }
+
+  .lista-fotos .lista-fotos-itens {
+    display: inline-block;
+  }
 </style>
