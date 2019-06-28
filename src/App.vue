@@ -2,8 +2,10 @@
   <div class="corpo">
     <h1 class="titulo">{{ titulo }}</h1>
 
+    <input type="search" class="filtro" @input="filtro = $event.target.value" placeholder="Pesquise pelo título da foto">
+    {{ filtro }}
     <ul class="lista-fotos">
-      <li class="lista-fotos-itens" v-for="foto of fotos">
+      <li class="lista-fotos-itens" v-for="foto of fotosComFiltro">
 
         <meu-painel :titulo="foto.titulo">
             <img class="imagem-responsiva" :src="foto.url" :alt="foto.descricao">
@@ -24,7 +26,18 @@ export default {
   data () {
     return {
       titulo: 'Alurapic',
-      fotos: []
+      fotos: [],
+      filtro: ''
+    }
+  },
+  computed: {
+    fotosComFiltro() {
+      if (this.filtro) {
+        let exp = new RegExp(this.filtro.trim(), 'i');
+        return this.fotos.filter(foto => exp.test(foto.titulo));
+      } else {
+        return this.fotos;
+      }
     }
   },
   created () {
@@ -56,5 +69,11 @@ export default {
 
   .lista-fotos .lista-fotos-itens {
     display: inline-block;
+  }
+
+  .filtro {
+    display: block;
+    width: 80%;
+    align-self: auto;
   }
 </style>
