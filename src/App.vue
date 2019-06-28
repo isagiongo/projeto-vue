@@ -1,16 +1,26 @@
 <template>
   <div class="corpo">
     <h1 class="titulo">{{ titulo }}</h1>
+
     <ul class="lista-fotos">
       <li class="lista-fotos-itens" v-for="foto of fotos">
-        <img :src="foto.url" :alt="foto.descricao">
+
+        <meu-painel :titulo="foto.titulo">
+            <img class="imagem-responsiva" :src="foto.url" :alt="foto.descricao">
+        </meu-painel>
+
       </li>
     </ul>
   </div>
 </template>
 
 <script>
+import Painel from './components/shared/painel/Painel';
+
 export default {
+  components: {
+    'meu-painel' : Painel
+  },
   data () {
     return {
       titulo: 'Alurapic',
@@ -38,6 +48,10 @@ export default {
 
   .lista-fotos {
     list-style: none;
+  }
+  
+  .imagem-responsiva {
+    width: 100%;
   }
 
   .lista-fotos .lista-fotos-itens {
