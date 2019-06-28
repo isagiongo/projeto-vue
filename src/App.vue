@@ -8,7 +8,7 @@
       <li class="lista-fotos-itens" v-for="foto of fotosComFiltro">
 
         <meu-painel :titulo="foto.titulo">
-            <img class="imagem-responsiva" :src="foto.url" :alt="foto.descricao">
+            <imagem-responsiva :url="foto.url" :titulo="foto.titulo"/>
         </meu-painel>
 
       </li>
@@ -18,10 +18,12 @@
 
 <script>
 import Painel from './components/shared/painel/Painel';
+import ImagemResponsiva from './components/shared/imagem-responsiva/ImagemResponsiva';
 
 export default {
   components: {
-    'meu-painel' : Painel
+    'meu-painel' : Painel,
+    'imagem-responsiva' : ImagemResponsiva
   },
   data () {
     return {
@@ -61,10 +63,6 @@ export default {
 
   .lista-fotos {
     list-style: none;
-  }
-  
-  .imagem-responsiva {
-    width: 100%;
   }
 
   .lista-fotos .lista-fotos-itens {
