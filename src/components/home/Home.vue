@@ -11,7 +11,7 @@
     {{ filtro }}
     <ul class="lista-fotos">
       <li class="lista-fotos-itens" v-for="foto of fotosComFiltro">
-        <meu-painel :titulo="foto.titulo">
+        <meu-painel v-meu-transform :titulo="foto.titulo">
           <imagem-responsiva :url="foto.url" :titulo="foto.titulo" />
           <meu-botao
             rotulo="REMOVER"
